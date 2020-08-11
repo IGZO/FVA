@@ -1,11 +1,6 @@
-var http = require('http');
+const express = require('express');
+const app = express();
 
-var nStatic = require('node-static');
+app.use(express.static('dist',{extensions:['html']}));
 
-var fileServer = new nStatic.Server('./dist');
-
-http.createServer(function (req, res) {
-    
-    fileServer.serve(req, res);
-
-}).listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => console.log('fva app listening on port '+ process.env.PORT || 3000));
